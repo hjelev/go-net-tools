@@ -25,7 +25,7 @@ func main() {
 		fmt.Printf("Issuer: %s\nExpiry: %v\n", conn.ConnectionState().PeerCertificates[0].Issuer, expiry.Format(time.RFC850))
 
 	} else{
-		fmt.Println("Usage: check_ssl domainname.tld")
+		fmt.Println("Usage: check_ssl domain.tld")
 	 }
 
 }
