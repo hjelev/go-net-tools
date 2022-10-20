@@ -10,7 +10,12 @@ import (
 
 func main() {
 	if len(os.Args) > 1 {
-		domain := "https://" + os.Args[1]
+		var domain string
+		if strings.HasPrefix(os.Args[1], "https://") {
+			domain = os.Args[1]
+		} else {
+			domain = "https://" + os.Args[1]
+		}
 		req, err := http.NewRequest("GET", domain, nil)
 		if err != nil {
 			panic(err)
