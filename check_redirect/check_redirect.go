@@ -12,7 +12,7 @@ func check_redirect(url string)(string, int){
 
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
-		panic(err)
+		os.Exit(1)
 	}
 	client := new(http.Client)
 	client.CheckRedirect = func(req *http.Request, via []*http.Request) error {
@@ -27,8 +27,6 @@ func check_redirect(url string)(string, int){
 		
 		if strings.Contains(err.Error(), "Redirect") {
 			fmt.Println(response.StatusCode, url)
-		} else { 
-			fmt.Println(err) 
 		}
 	}
 	return response.Header.Get("Location"), response.StatusCode
@@ -45,7 +43,6 @@ func main() {
 		for {
 			resp_url, resp_code := check_redirect(domain)
 			domain = resp_url
-	
 			if resp_code < 300 || resp_code > 400 {
 				break
 			}
