@@ -26,7 +26,7 @@ func check_redirect(url string)(string, int){
 	} else {
 		
 		if strings.Contains(err.Error(), "Redirect") {
-			fmt.Println(response.StatusCode, response.Header.Get("Location"))
+			fmt.Println(response.StatusCode, url)
 		} else { 
 			fmt.Println(err) 
 		}
