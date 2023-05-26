@@ -8,8 +8,16 @@ import (
 	"strings"
 )
 
-func check_redirect(url string)(string, int){
+func handlePanic(url string) {
+	// detect if panic occurs or not
+	a := recover()
+	if a != nil {
+	  fmt.Println(url, " is not a valid url!")
+	}
+  }
 
+func check_redirect(url string)(string, int){
+	defer handlePanic(url)
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		os.Exit(1)

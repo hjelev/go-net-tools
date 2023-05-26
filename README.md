@@ -1,6 +1,5 @@
 # go net tools
 
-
 # check_ssl 
 
 check the issuer and the expiration date of a domain certificate
@@ -20,6 +19,8 @@ check destination url and status code of url
 ## Example:
 
 ```
-$ ./ceck_redirect google.com 
-301 https://www.google.com/
+$ ./check_redirect http://amazon.com                                                                       127 ↵ masoko@ubuntu-pc
+301 http://amazon.com
+301 https://amazon.com/
+200 https://www.amazon.com/
 ```
