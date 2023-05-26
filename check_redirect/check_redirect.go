@@ -22,21 +22,16 @@ func check_redirect(url string)(string, int){
 	if err != nil {
 		os.Exit(1)
 	}
+
 	client := new(http.Client)
 	client.CheckRedirect = func(req *http.Request, via []*http.Request) error {
 		return errors.New("Redirect")
 	}
 
 	response, err := client.Do(req)
-	if err == nil {
-		fmt.Println(response.StatusCode, url)
 
-	} else {
-		
-		if strings.Contains(err.Error(), "Redirect") {
-			fmt.Println(response.StatusCode, url)
-		}
-	}
+	fmt.Println(response.StatusCode, url)
+
 	return response.Header.Get("Location"), response.StatusCode
 }
 
@@ -56,6 +51,6 @@ func main() {
 			}
 		}
 	} else {
-		fmt.Printf("Usage: check_redirect domain.tld \n")
+		fmt.Printf("Usage: check_redirect [URL] \nDisplay status code returned from url and follow redirects.\nAutomatically appends https:// to url if not present.\n")
 	}
 }
