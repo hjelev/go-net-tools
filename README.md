@@ -2,7 +2,7 @@
 
 # check_ssl 
 
-check the issuer and the expiration date of a domain certificate
+Check the issuer and the expiration date of a domain certificate.
 
 ## Example:
 
@@ -14,7 +14,11 @@ Expiry: Monday, 02-Jan-23 19:48:21 UTC
 
 # check_redirect
 
-check destination url and status code of url
+Usage: check_redirect [URL] 
+
+Display status code returned from url and follow redirects.
+
+Automatically appends https:// to url if not present.\n
 
 ## Example:
 

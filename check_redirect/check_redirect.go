@@ -14,7 +14,7 @@ func handlePanic(url string) {
 	if a != nil {
 	  fmt.Println(url, " is not a valid url!")
 	}
-  }
+}
 
 func check_redirect(url string)(string, int){
 	defer handlePanic(url)
@@ -51,6 +51,8 @@ func main() {
 			}
 		}
 	} else {
-		fmt.Printf("Usage: check_redirect [URL] \nDisplay status code returned from url and follow redirects.\nAutomatically appends https:// to url if not present.\n")
+		fmt.Println(`Usage: check_redirect [URL]
+Display status code returned from url and follow redirects.
+Automatically appends https:// to url if not present.`)
 	}
 }
