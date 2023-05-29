@@ -4,21 +4,22 @@ import (
     "errors"
     "fmt"
     "net/http"
+	// "net/url"
 	"os"
 	"strings"
 )
 
-func handlePanic(url string) {
+func handlePanic(uri string) {
 	// detect if panic occurs or not
 	a := recover()
 	if a != nil {
-	  fmt.Println(url, " is not a valid url!")
+	  fmt.Println(uri, " is not a valid url!")
 	}
 }
 
-func check_redirect(url string)(string, int){
-	defer handlePanic(url)
-	req, err := http.NewRequest("GET", url, nil)
+func check_redirect(uri string)(string, int){
+	defer handlePanic(uri)
+	req, err := http.NewRequest("GET", uri, nil)
 	if err != nil {
 		os.Exit(1)
 	}
@@ -30,9 +31,9 @@ func check_redirect(url string)(string, int){
 
 	response, err := client.Do(req)
 
-	fmt.Println(response.StatusCode, url)
+	fmt.Println(response.StatusCode, uri)
 
-	return response.Header.Get("Location"), response.StatusCode
+	return strings.ReplaceAll(response.Header.Get("Location"), " ", "%20"), response.StatusCode
 }
 
 func main() {
